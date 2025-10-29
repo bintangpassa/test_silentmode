@@ -24,6 +24,18 @@ services:
     depends_on: [app]
     networks: [cpa_net]
 
+  ws:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: cpa_ws
+    working_dir: /var/www/html
+    command: ["php", "artisan", "websockets:serve"]
+    volumes:
+      - ./server:/var/www/html
+    depends_on: [app]
+    networks: [cpa_net]
+
 networks:
   cpa_net:
     driver: bridge
