@@ -10,7 +10,10 @@ RUN apk add --no-cache nginx curl zip unzip bash icu-dev oniguruma-dev libzip-de
  && docker-php-ext-install pdo pdo_sqlite \
  && apk add --no-cache libzip-dev \
  && docker-php-ext-configure zip \
- && docker-php-ext-install zip 
+ && docker-php-ext-install zip \
+ && apk add --no-cache nodejs npm
+
+RUN npm install && npm run build
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
@@ -23,6 +26,8 @@ ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
 
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
  && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+RUN npm install && npm run build
 
 EXPOSE 9000
 
