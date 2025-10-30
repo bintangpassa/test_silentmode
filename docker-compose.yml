@@ -24,13 +24,15 @@ services:
     depends_on: [app]
     networks: [cpa_net]
 
-  ws:
+  reverb:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: cpa_ws
+    container_name: cpa_reverb
     working_dir: /var/www/html
-    command: ["php", "artisan", "websockets:serve"]
+    command: ["php", "artisan", "reverb:start", "--host=0.0.0.0", "--port=6001"]
+    ports:
+      - "6001:6001"
     volumes:
       - ./server:/var/www/html
     depends_on: [app]
