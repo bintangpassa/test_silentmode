@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('status', 20)->default('offline')->index();
-            $table->string('ip', 45);
+            $table->string('ip', 45)->nullable();
             $table->text('note')->nullable();
             $table->timestamp('first_connected')->nullable();
             $table->timestamp('last_connected')->nullable();
