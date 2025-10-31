@@ -24,7 +24,7 @@ import websocket
 # Configuration
 # ---------------------------------
 API_BASE_URL = "http://localhost:8080"
-TENANT_UUID = "9035b613-b0dd-4cea-8e6e-4ea3ba9715aa"  # replace with actual UUID if any
+TENANT_UUID = "9035b613-b0dd-4cea-8e6e-4ea3ba9715aa"  # replace with actual UUID if any, or None to autogenerate new tenant
 TENANT_NAME = "Tenant Demo"
 FILES_DIRECTORY = "client_python/files"
 SPECIFIC_UPLOAD_FILE = "client_python/files/example_files.txt"  # fallback file to upload
